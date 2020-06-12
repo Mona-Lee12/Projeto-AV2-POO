@@ -5,23 +5,30 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.poo.dao.AdminDAO;
+
 import java.awt.Color;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textLogin;
-	private JTextField textSenha;
+	private JPasswordField textSenha;
 
 	/**
 	 * Launch the application.
@@ -91,12 +98,26 @@ public class Login extends JFrame {
 		contentPane.add(textLogin);
 		textLogin.setColumns(10);
 		
-		textSenha = new JTextField();
+		textSenha = new JPasswordField();
 		textSenha.setColumns(10);
 		textSenha.setBounds(277, 219, 234, 36);
 		contentPane.add(textSenha);
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminDAO dao = new AdminDAO();
+				
+				if(dao.checkLogin(textLogin.getText(), new String(textSenha.getPassword()) )) {
+					new MenuLateral().setVisible(true);
+					dispose();
+					JOptionPane.showMessageDialog(null, "Usuário logado.");
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Usuário ou Senha incorretos.");
+				}				
+			}						
+		});
 		btnEntrar.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		btnEntrar.setForeground(new Color(47, 79, 79));
 		btnEntrar.setBackground(new Color(224, 255, 255));
@@ -119,6 +140,6 @@ public class Login extends JFrame {
 		panelImagemLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		panelImagemLogin.setBounds(277, 0, 234, 120);
 		contentPane.add(panelImagemLogin);
-		panelImagemLogin.setIcon(new ImageIcon("C:\\Users\\Mona Lee\\eclipse-workspace\\projeto-av2\\icons\\logo.png"));
+		panelImagemLogin.setIcon(new ImageIcon("icons\\logo.png"));
 	}
 }

@@ -7,10 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuLateral extends JFrame {
 
@@ -52,118 +56,121 @@ public class MenuLateral extends JFrame {
 		panelUsuariosPage = new PanelUsuarios();
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 156, 1000);
+		panel.setBounds(0, 0, 156, 351);
 		panel.setBackground(new Color(176, 224, 230));
 		contentPane.add(panel);
 				panel.setLayout(null);
 			
 				
-				JLabel paneImagem = new JLabel("");
-				paneImagem.setBounds(18, 5, 120, 120);
-				panel.add(paneImagem);
-				paneImagem.setIcon(new ImageIcon("C:\\Users\\Mona Lee\\eclipse-workspace\\projeto-av2\\icons\\logo.png"));
-				
-				JPanel panelHome = new JPanel();
-				panelHome.addMouseListener(new PanelButtonMouseAdapter(panelHome) {
-					@Override 
-					public void mouseClicked(MouseEvent e) {
-						menuClicked(panelHomePage);
-					}
-				});
-				panelHome.setBounds(10, 149, 136, 36);
-				panelHome.setBackground(new Color(176, 224, 230));
-				panel.add(panelHome);
-				panelHome.setLayout(null);
-				
-				JLabel labelHome = new JLabel("Home");
-				labelHome.setHorizontalAlignment(SwingConstants.CENTER);
-				labelHome.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-				labelHome.setBounds(0, 0, 136, 36);
-				panelHome.add(labelHome);
-				
-				JPanel panelUsuario = new JPanel();
-				panelUsuario.addMouseListener(new PanelButtonMouseAdapter(panelUsuario) {
-					@Override 
-					public void mouseClicked(MouseEvent e) {
-						menuClicked(panelUsuariosPage);
-					}
-				});
-				panelUsuario.setBounds(10, 184, 136, 36);
-				panelUsuario.setBackground(new Color(176, 224, 230));
-				panel.add(panelUsuario);
-				panelUsuario.setLayout(null);
-				
-				JLabel lblUsuarios = new JLabel("Usu\u00E1rios");
-				lblUsuarios.setBounds(0, 0, 136, 36);
-				lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
-				lblUsuarios.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-				panelUsuario.add(lblUsuarios);
-				
-				JPanel panelArquivos = new JPanel();
-				panelArquivos.addMouseListener(new PanelButtonMouseAdapter(panelArquivos) {
-					@Override 
-					public void mouseClicked(MouseEvent e) {
-						menuClicked(panelArquivosPage);
-					}
-				});
-				panelArquivos.setBounds(10, 219, 136, 36);
-				panelArquivos.setBackground(new Color(176, 224, 230));
-				panel.add(panelArquivos);
-				panelArquivos.setLayout(null);
-				
-				JLabel lblArquivos = new JLabel("Arquivos");
-				lblArquivos.setBounds(0, 0, 136, 36);
-				lblArquivos.setHorizontalAlignment(SwingConstants.CENTER);
-				lblArquivos.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-				panelArquivos.add(lblArquivos);
-				
-				JPanel panelCategorias = new JPanel();
-				panelCategorias.addMouseListener(new PanelButtonMouseAdapter(panelCategorias) {
-					@Override 
-					public void mouseClicked(MouseEvent e) {
-						menuClicked(panelCategoriasPage);
-					}
-				});
-				panelCategorias.setBounds(10, 253, 136, 36);
-				panelCategorias.setBackground(new Color(176, 224, 230));
-				panel.add(panelCategorias);
-				panelCategorias.setLayout(null);
-				
-				JLabel lblCateg = new JLabel("Categorias");
-				lblCateg.setBounds(0, 0, 136, 36);
-				lblCateg.setHorizontalAlignment(SwingConstants.CENTER);
-				lblCateg.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-				panelCategorias.add(lblCateg);
-				
-				JPanel panelSair = new JPanel();
-				panelSair.addMouseListener(new PanelButtonMouseAdapter(panelSair) {
-					@Override 
-					public void mouseClicked(MouseEvent e) {
-						//Sair do sistema
-					}
-				});
-				panelSair.setBounds(10, 287, 136, 36);
-				panel.add(panelSair);
-				panelSair.setLayout(null);
-				panelSair.setBackground(new Color(176, 224, 230));
-				
-				JLabel label = new JLabel("Sair");
-				label.setHorizontalAlignment(SwingConstants.CENTER);
-				label.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
-				label.setBounds(0, 0, 136, 36);
-				panelSair.add(label);
-				
-				JPanel panelContentPage = new JPanel();
-				panelContentPage.setBounds(166, 11, 597, 329);
-				contentPane.add(panelContentPage);
-				panelContentPage.setLayout(null);
-				
-				panelContentPage.add(panelHomePage);
-				panelContentPage.add(panelCategoriasPage);
-				panelContentPage.add(panelUsuariosPage);
-				panelContentPage.add(panelArquivosPage);
-				
+		JLabel paneImagem = new JLabel("");
+		paneImagem.setBounds(10, 6, 136, 120);
+		panel.add(paneImagem);
+		paneImagem.setIcon(new ImageIcon("icons\\logo.png"));
+		
+		JPanel panelHome = new JPanel();
+		panelHome.addMouseListener(new PanelButtonMouseAdapter(panelHome) {
+			@Override 
+			public void mouseClicked(MouseEvent e) {
 				menuClicked(panelHomePage);
+			}
+		});
+		panelHome.setBounds(10, 149, 136, 36);
+		panelHome.setBackground(new Color(176, 224, 230));
+		panel.add(panelHome);
+		panelHome.setLayout(null);
+		
+		JLabel labelHome = new JLabel("Home");
+		labelHome.setHorizontalAlignment(SwingConstants.CENTER);
+		labelHome.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		labelHome.setBounds(6, 0, 130, 36);
+		panelHome.add(labelHome);
+		
+		JPanel panelUsuario = new JPanel();
+		panelUsuario.addMouseListener(new PanelButtonMouseAdapter(panelUsuario) {
+			@Override 
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(panelUsuariosPage);
+			}
+		});
+		panelUsuario.setBounds(10, 184, 136, 36);
+		panelUsuario.setBackground(new Color(176, 224, 230));
+		panel.add(panelUsuario);
+		panelUsuario.setLayout(null);
+		
+		JLabel lblUsuarios = new JLabel("Usu\u00E1rios");
+		lblUsuarios.setBounds(6, 0, 130, 36);
+		lblUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsuarios.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		panelUsuario.add(lblUsuarios);
+		
+		JPanel panelArquivos = new JPanel();
+		panelArquivos.addMouseListener(new PanelButtonMouseAdapter(panelArquivos) {
+			@Override 
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(panelArquivosPage);
+			}
+		});
+		panelArquivos.setBounds(10, 219, 136, 36);
+		panelArquivos.setBackground(new Color(176, 224, 230));
+		panel.add(panelArquivos);
+		panelArquivos.setLayout(null);
+		
+		JLabel lblArquivos = new JLabel("Arquivos");
+		lblArquivos.setBounds(6, 0, 130, 36);
+		lblArquivos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblArquivos.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		panelArquivos.add(lblArquivos);
+		
+		JPanel panelCategorias = new JPanel();
+		panelCategorias.addMouseListener(new PanelButtonMouseAdapter(panelCategorias) {
+			@Override 
+			public void mouseClicked(MouseEvent e) {
+				menuClicked(panelCategoriasPage);
+			}
+		});
+		panelCategorias.setBounds(10, 253, 136, 36);
+		panelCategorias.setBackground(new Color(176, 224, 230));
+		panel.add(panelCategorias);
+		panelCategorias.setLayout(null);
+		
+		JLabel lblCateg = new JLabel("Categorias");
+		lblCateg.setBounds(6, 6, 130, 36);
+		lblCateg.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCateg.setFont(new Font("Segoe UI Light", Font.BOLD, 18));
+		panelCategorias.add(lblCateg);	
+		
+		JButton btnNewButton = new JButton("Sair");
+		btnNewButton.setBackground(new Color(175, 238, 238));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int confirm = JOptionPane.showConfirmDialog(panel, "Tem certeza que deseja sair?");
+				if(confirm == 0) {
+					dispose();
+					new Login().setVisible(true);
+					setVisible(false);
+				} else {
+					return;
+				}
+			}
+		});
+		
+		btnNewButton.setFont(new Font("Segoe UI Light", Font.BOLD, 18));		
+		btnNewButton.setBounds(33, 304, 91, 30);		
+		panel.add(btnNewButton);
+		
+		JPanel panelContentPage = new JPanel();
+		panelContentPage.setBounds(166, 11, 597, 329);
+		contentPane.add(panelContentPage);
+		panelContentPage.setLayout(null);
+		
+		panelContentPage.add(panelHomePage);
+		panelContentPage.add(panelCategoriasPage);
+		panelContentPage.add(panelUsuariosPage);
+		panelContentPage.add(panelArquivosPage);
+		
+		menuClicked(panelHomePage);
 	}
 	
 	
@@ -199,6 +206,4 @@ public class MenuLateral extends JFrame {
 			panel.setBackground(new Color(176,224,230));
 		}		
 	}
-	
-	
 }
