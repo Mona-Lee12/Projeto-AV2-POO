@@ -1,17 +1,28 @@
 package com.poo.view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
+import com.poo.controller.CategoriasController;
+import com.poo.model.Categorias;
 
 public class PanelCategorias extends JPanel {
+	
 	private JTextField textCategoria;
+	private JTable tabela;
+	private DefaultTableModel modelo = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -20,6 +31,9 @@ public class PanelCategorias extends JPanel {
 		setBackground(new Color(255, 255, 255));
 		setBounds(0,0,597,329);
 		setLayout(null);
+		
+		Categorias categoria = new Categorias();
+		CategoriasController controller = new CategoriasController();
 		
 		textCategoria = new JTextField();
 		textCategoria.setColumns(10);
@@ -31,14 +45,33 @@ public class PanelCategorias extends JPanel {
 		btnCadastrar.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 13));
 		btnCadastrar.setBackground(new Color(95, 158, 160));
 		btnCadastrar.setBounds(502, 128, 89, 34);
+		btnCadastrar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try {						
+        			categoria.setNome(textCategoria.getText());
+					controller.CadastrarCategoria(categoria);
+					JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!");
+					pesquisar(modelo);
+				}				
+				 catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Erro ao Inserir Aluno!");
+				}	
+        	}
+        });
 		add(btnCadastrar);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(null);
-		scrollPane.setBorder(null);
-		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(14, 57, 275, 253);
-		add(scrollPane);
+
+		criaJTable();
+		JScrollPane jScrollPane = new JScrollPane();
+		jScrollPane.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		jScrollPane.setBackground(Color.WHITE);
+		jScrollPane.setBorder(null);
+		jScrollPane.setViewportBorder(null);
+		jScrollPane.setBounds(10, 82, 279, 239);
+		jScrollPane.setViewportView(tabela);
+		jScrollPane.getViewport().setBackground(Color.WHITE);
+		tabela.setBackground(Color.WHITE);
+		add(jScrollPane);
 		
 		JLabel lblNomeCategoria = new JLabel("Nome Categoria:");
 		lblNomeCategoria.setForeground(new Color(95, 158, 160));
@@ -53,18 +86,31 @@ public class PanelCategorias extends JPanel {
 		lblCategorias.setBounds(14, 6, 200, 34);
 		add(lblCategorias);
 		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(new Color(95, 158, 160));
-		btnVoltar.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 13));
-		btnVoltar.setBackground(Color.WHITE);
-		btnVoltar.setBounds(502, 9, 89, 34);
-		add(btnVoltar);
-		
 		JLabel label = new JLabel("*");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.RED);
 		label.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 15));
 		label.setBounds(404, 57, 19, 18);
 		add(label);
+		
+		repaint();
+	}
+	private void criaJTable() {
+		 
+		 tabela = new JTable(modelo);
+		 tabela.setShowHorizontalLines(true);
+		 tabela.setBackground(Color.WHITE);
+		 tabela.setSelectionBackground(new Color(0, 128, 128));
+	     modelo.addColumn("Nome");
+	     tabela.getColumnModel().getColumn(0).setPreferredWidth(40);
+	     pesquisar(modelo);
+	     
+	 }
+	public static void pesquisar(DefaultTableModel modelo) {
+		  CategoriasController controller = new CategoriasController();
+		  modelo.setNumRows(0);
+		  for(Categorias categoria : controller.BuscarCategorias()) {
+			  modelo.addRow(new Object[]{categoria.getNome()});
+		  }
 	}
 }
