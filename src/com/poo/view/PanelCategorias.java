@@ -41,6 +41,15 @@ public class PanelCategorias extends JPanel {
 		textCategoriaNome.setBounds(364, 136, 355, 34);
 		add(textCategoriaNome);
 		
+
+		JLabel labelMsgObrigatoriedade = new JLabel("Campo obrigat\u00F3rio.");
+		labelMsgObrigatoriedade.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		labelMsgObrigatoriedade.setForeground(new Color(255, 0, 0));
+		labelMsgObrigatoriedade.setBounds(608, 118, 111, 16);
+		labelMsgObrigatoriedade.setVisible(false);
+		add(labelMsgObrigatoriedade);
+		
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
@@ -48,17 +57,25 @@ public class PanelCategorias extends JPanel {
 		btnCadastrar.setBounds(364, 194, 89, 34);
 		btnCadastrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {						
-        			categoria.setNome(textCategoriaNome.getText());
-					controller.CadastrarCategoria(categoria);
-					JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!");
-					pesquisar(modelo,null);
-					CadastrarActionPerformed();
-				}				
-				 catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao Inserir Aluno!");
-				}	
-        	}
+        		
+        		if (textCategoriaNome.getText().length() <= 0 || textCategoriaNome.getText().isEmpty()) {
+        			labelMsgObrigatoriedade.setVisible(true);
+        			JOptionPane.showMessageDialog(null, "Confira os campos Obrigatórios!!");
+                } 
+        		else {
+                	try {	
+                			labelMsgObrigatoriedade.setVisible(false);
+		        			categoria.setNome(textCategoriaNome.getText());
+							controller.CadastrarCategoria(categoria);
+							JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!");
+							pesquisar(modelo,null);
+							CadastrarActionPerformed();
+						}				
+						 catch (Exception e1) {
+							JOptionPane.showMessageDialog(null, "Erro ao tentar cadastrar categoria.");
+						}	
+		        	}
+            }
         });
 		add(btnCadastrar);
 		
@@ -103,17 +120,24 @@ public class PanelCategorias extends JPanel {
 		btnEditar.setBounds(492, 194, 89, 34);
 		btnEditar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {
-        			categoria.setCategoriaId(Integer.parseInt(textCategoriaId.getText()));
-        			categoria.setNome(textCategoriaNome.getText());
-					controller.EditarCategoria(categoria);
-					JOptionPane.showMessageDialog(null, "Categoria editada com sucesso!");
-					pesquisar(modelo,null);
-					CadastrarActionPerformed();
-				}				
-				 catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, e1);
-				}	
+        		if (textCategoriaNome.getText().length() <= 0 || textCategoriaNome.getText().isEmpty()) {
+        			labelMsgObrigatoriedade.setVisible(true);
+        			JOptionPane.showMessageDialog(null, "Confira os campos Obrigatórios!!");
+                } 
+        		else {
+	        		try {
+            			labelMsgObrigatoriedade.setVisible(false);
+	        			categoria.setCategoriaId(Integer.parseInt(textCategoriaId.getText()));
+	        			categoria.setNome(textCategoriaNome.getText());
+						controller.EditarCategoria(categoria);
+						JOptionPane.showMessageDialog(null, "Categoria editada com sucesso!");
+						pesquisar(modelo,null);
+						CadastrarActionPerformed();
+					}				
+					 catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Erro ao tentar editar categoria.");
+					}	
+        		}
         	}
         });
 		add(btnEditar);
@@ -125,17 +149,25 @@ public class PanelCategorias extends JPanel {
 		btnExcluir.setBounds(630, 194, 89, 34);
 		btnExcluir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {
-        			categoria.setCategoriaId(Integer.parseInt(textCategoriaId.getText()));
-        			categoria.setNome(textCategoriaNome.getText());
-					controller.ExcluirCategoria(categoria);
-					JOptionPane.showMessageDialog(null, "Categoria excluída com sucesso!");
-					pesquisar(modelo,null);
-					CadastrarActionPerformed();
-				}				
-				 catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, e1);
-				}	
+        		if (textCategoriaNome.getText().length() <= 0 || textCategoriaNome.getText().isEmpty()) {
+        			labelMsgObrigatoriedade.setVisible(true);
+        			JOptionPane.showMessageDialog(null, "Confira os campos Obrigatórios!!");
+                } 
+        		else {
+	        		try {
+
+            			labelMsgObrigatoriedade.setVisible(false);
+	        			categoria.setCategoriaId(Integer.parseInt(textCategoriaId.getText()));
+	        			categoria.setNome(textCategoriaNome.getText());
+						controller.ExcluirCategoria(categoria);
+						JOptionPane.showMessageDialog(null, "Categoria excluída com sucesso!");
+						pesquisar(modelo,null);
+						CadastrarActionPerformed();
+					}				
+					 catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Erro ao tentar excluir categoria.");
+					}
+        		}
         	}
         });
 		add(btnExcluir);
@@ -168,6 +200,7 @@ public class PanelCategorias extends JPanel {
 		labelBuscaCategoria.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		labelBuscaCategoria.setBounds(14, 63, 214, 16);
 		add(labelBuscaCategoria);
+		
 		
 		textCategoriaId = new JTextField();
 		textCategoriaId.setBounds(364, 52, 13, 28);
