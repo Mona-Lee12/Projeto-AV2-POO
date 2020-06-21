@@ -42,6 +42,21 @@ public class PanelFuncionarios extends JPanel {
 		setForeground(new Color(0, 0, 0));
 		setBounds(0, 0, 736, 364);
 		setLayout(null);
+		
+
+		JLabel labelCampoObrigatorio_1 = new JLabel("Campo obrigat\u00F3rio.");
+		labelCampoObrigatorio_1.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		labelCampoObrigatorio_1.setForeground(new Color(255, 0, 0));
+		labelCampoObrigatorio_1.setBounds(68, 254, 104, 16);
+		labelCampoObrigatorio_1.setVisible(false);
+		add(labelCampoObrigatorio_1);
+		
+		JLabel labelCampoObrigatorio_2 = new JLabel("Campo obrigat\u00F3rio.");
+		labelCampoObrigatorio_2.setForeground(Color.RED);
+		labelCampoObrigatorio_2.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		labelCampoObrigatorio_2.setBounds(312, 254, 104, 16);
+		labelCampoObrigatorio_2.setVisible(false);
+		add(labelCampoObrigatorio_2);
         
 		JLabel labelFuncionarios = new JLabel("Funcion\u00E1rios");
 		labelFuncionarios.setBounds(10, 6, 715, 34);
@@ -93,21 +108,32 @@ public class PanelFuncionarios extends JPanel {
 		btnCadastrar.setBackground(new Color(0, 100, 0));
 		btnCadastrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {						
-					funcionarios.setNome(textNome.getText());
-					funcionarios.setCpf(textCpf.getText());
-					funcionarios.setEmail(textEmail.getText());
-					funcionarios.setTelefone(textTelefone.getText());
-					funcionarios.setCargo(textCargo.getText());
-					funcionarios.setSalario(Float.parseFloat(textSalario.getText()));
-					Funcionariocontroller.CadastrarFuncionarios(funcionarios);
-					JOptionPane.showMessageDialog(null, "Funcion�rio cadastrado com sucesso!");
-					CadastrarActionPerformed();
-					
-				}				
-				 catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao cadastrar Funcion�rio!");
-				}
+        		if ((textNome.getText().length() <= 0 && textNome.getText().isEmpty()) || (textCpf.getText().length() <= 0 && textCpf.getText().isEmpty())) {
+        			labelCampoObrigatorio_1.setVisible(true);
+        			labelCampoObrigatorio_2.setVisible(true);
+        			JOptionPane.showMessageDialog(null, "Confira os campos obrigatórios!!");
+                } 
+        		else {
+	        		try {
+	        			if(textSalario.getText().isEmpty()) {
+	        				textSalario.setText("0");
+	        			}
+	        			labelCampoObrigatorio_1.setVisible(false);
+	        			labelCampoObrigatorio_2.setVisible(false);
+						funcionarios.setNome(textNome.getText());
+						funcionarios.setCpf(textCpf.getText());
+						funcionarios.setEmail(textEmail.getText());
+						funcionarios.setTelefone(textTelefone.getText());
+						funcionarios.setCargo(textCargo.getText());
+						funcionarios.setSalario(Float.parseFloat(textSalario.getText()));
+						Funcionariocontroller.CadastrarFuncionarios(funcionarios);
+						JOptionPane.showMessageDialog(null, "Funcionário cadastrado com sucesso!");
+						CadastrarActionPerformed();
+					}				
+					 catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, e1);
+					}
+        		}
         	}
         });
 		add(btnCadastrar);
@@ -131,22 +157,34 @@ public class PanelFuncionarios extends JPanel {
 		btnEditar.setBackground(new Color(255, 204, 0));
 		btnEditar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {		
-        			funcionarios.setFuncionarioId(Integer.parseInt(textFuncionarioId.getText()));
-					funcionarios.setNome(textNome.getText());
-					funcionarios.setCpf(textCpf.getText());
-					funcionarios.setEmail(textEmail.getText());
-					funcionarios.setTelefone(textTelefone.getText());
-					funcionarios.setCargo(textCargo.getText());
-					funcionarios.setSalario(Float.parseFloat(textSalario.getText()));
-					Funcionariocontroller.EditarFuncionarios(funcionarios);
-					JOptionPane.showMessageDialog(null, "Funcion�rio editado com sucesso!");
-					CadastrarActionPerformed();
-					
-				}				
-				 catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao editar Funcion�rio!");
-				}
+        		if ((textNome.getText().length() <= 0 && textNome.getText().isEmpty()) || (textCpf.getText().length() <= 0 && textCpf.getText().isEmpty())) {
+        			labelCampoObrigatorio_1.setVisible(true);
+        			labelCampoObrigatorio_2.setVisible(true);
+        			JOptionPane.showMessageDialog(null, "Confira os campos obrigatórios!!");
+                } 
+        		else {
+	        		try {
+	        			if(textSalario.getText().isEmpty()) {
+	        				textSalario.setText("0");
+	        			}
+	        			labelCampoObrigatorio_1.setVisible(false);
+	        			labelCampoObrigatorio_2.setVisible(false);
+	        			funcionarios.setFuncionarioId(Integer.parseInt(textFuncionarioId.getText()));
+						funcionarios.setNome(textNome.getText());
+						funcionarios.setCpf(textCpf.getText());
+						funcionarios.setEmail(textEmail.getText());
+						funcionarios.setTelefone(textTelefone.getText());
+						funcionarios.setCargo(textCargo.getText());
+						funcionarios.setSalario(Float.parseFloat(textSalario.getText()));
+						Funcionariocontroller.EditarFuncionarios(funcionarios);
+						JOptionPane.showMessageDialog(null, "Funcionário editado com sucesso!");
+						CadastrarActionPerformed();
+						
+					}				
+					 catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Erro ao tentar editar funcionário!");
+					}
+        		}
         	}
         });
 		add(btnEditar);
@@ -158,22 +196,30 @@ public class PanelFuncionarios extends JPanel {
 		btnExcluir.setBackground(new Color(255, 0, 0));
 		btnExcluir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		try {
-        			funcionarios.setFuncionarioId(Integer.parseInt(textFuncionarioId.getText()));
-					funcionarios.setNome(textNome.getText());
-					funcionarios.setCpf(textCpf.getText());
-					funcionarios.setEmail(textEmail.getText());
-					funcionarios.setTelefone(textTelefone.getText());
-					funcionarios.setCargo(textCargo.getText());
-					funcionarios.setSalario(Float.parseFloat(textSalario.getText()));
-					Funcionariocontroller.ExcluirFuncionarios(funcionarios);
-					JOptionPane.showMessageDialog(null, "Funcion�rio exclu�do com sucesso!");
-					CadastrarActionPerformed();
-					
-				}				
-				 catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Erro ao excluir Funcion�rio!");
-				}
+        		if ((textNome.getText().length() <= 0 && textNome.getText().isEmpty()) || (textCpf.getText().length() <= 0 && textCpf.getText().isEmpty())) {
+        			labelCampoObrigatorio_1.setVisible(true);
+        			labelCampoObrigatorio_2.setVisible(true);
+        			JOptionPane.showMessageDialog(null, "Confira os campos obrigatórios!!");
+                } 
+        		else {
+	        		try {
+	        			labelCampoObrigatorio_1.setVisible(false);
+	        			labelCampoObrigatorio_2.setVisible(false);
+	        			funcionarios.setFuncionarioId(Integer.parseInt(textFuncionarioId.getText()));
+						funcionarios.setNome(textNome.getText());
+						funcionarios.setCpf(textCpf.getText());
+						funcionarios.setEmail(textEmail.getText());
+						funcionarios.setTelefone(textTelefone.getText());
+						funcionarios.setCargo(textCargo.getText());
+						funcionarios.setSalario(Float.parseFloat(textSalario.getText()));
+						Funcionariocontroller.ExcluirFuncionarios(funcionarios);
+						JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!");
+						CadastrarActionPerformed();
+					}				
+					 catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Erro ao tentar excluir funcionário!");
+					}
+        		}
         	}
         });
 		add(btnExcluir);
@@ -253,6 +299,7 @@ public class PanelFuncionarios extends JPanel {
 		label_1.setBounds(292, 251, 19, 18);
 		add(label_1);
 		
+		
 		textFuncionarioId = new JTextField();
 		textFuncionarioId.setBounds(122, 10, 13, 28);
 		textFuncionarioId.setColumns(10);
@@ -277,7 +324,7 @@ public class PanelFuncionarios extends JPanel {
 	     modelo.addColumn("Telefone");
 	     modelo.addColumn("Email");
 	     modelo.addColumn("Cargo");
-	     modelo.addColumn("Salario");
+	     modelo.addColumn("Salário");
 	     tabela.getColumnModel().getColumn(0).setPreferredWidth(10);
 	     tabela.getColumnModel().getColumn(1).setPreferredWidth(20);
 	     tabela.getColumnModel().getColumn(2).setPreferredWidth(20);
