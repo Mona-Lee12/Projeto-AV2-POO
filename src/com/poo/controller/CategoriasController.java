@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.poo.dao.CategoriasDAO;
-import com.poo.dao.UsuariosDAO;
 import com.poo.model.Categorias;
 
 
