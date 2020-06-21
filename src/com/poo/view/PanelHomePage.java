@@ -9,7 +9,7 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 
 import com.poo.controller.CategoriasController;
-import com.poo.controller.UsuariosController;
+import com.poo.controller.FuncionariosController;
 
 public class PanelHomePage extends JPanel {
 
@@ -21,34 +21,35 @@ public class PanelHomePage extends JPanel {
 		setBounds(0, 0, 736, 364);
 		setLayout(null);
 		
-		UsuariosController controllerUsuario = new UsuariosController();
+		FuncionariosController controllerFuncionario = new FuncionariosController();
 		CategoriasController controllerCategoria = new CategoriasController();
-		//ArquivosController controllerArquivos = new ArquivosController();
+		//ProdutosController controllerProduto = new ProdutosController();
 		
-		JPanel panelArquivos = new JPanel();
-		panelArquivos.setToolTipText("Quantidade de Arquivos");
-		panelArquivos.setBackground(new Color(255, 255, 255));
-		panelArquivos.setBounds(35, 61, 149, 117);
-		panelArquivos.setBorder(new LineBorder(new Color(0, 128, 0)));
-		add(panelArquivos);
-		panelArquivos.setLayout(null);
+		JPanel panelProdutos = new JPanel();
+		panelProdutos.setToolTipText("Quantidade de Produtos");
+		panelProdutos.setBackground(new Color(255, 255, 255));
+		panelProdutos.setBounds(35, 61, 149, 117);
+		panelProdutos.setBorder(new LineBorder(new Color(0, 128, 0)));
+		add(panelProdutos);
+		panelProdutos.setLayout(null);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(74, 6, 1, 1);
-		panelArquivos.add(panel_3);
+		panelProdutos.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel labelQtdArquivos = new JLabel("0");
-		//labelQtdArquivos.setText(controllerCategoria.BuscarQtdArquivos()); --> Tem que implementar 
-		labelQtdArquivos.setHorizontalAlignment(SwingConstants.CENTER);
-		labelQtdArquivos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 16));
-		labelQtdArquivos.setBounds(56, 100, 34, 17);
-		panelArquivos.add(labelQtdArquivos);
+		JLabel labelQtdProdutos = new JLabel("0");
+
+		//labelQtdProdutos.setText(controllerProduto.BuscarQtdProdutos());
+		labelQtdProdutos.setHorizontalAlignment(SwingConstants.CENTER);
+		labelQtdProdutos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 16));
+		labelQtdProdutos.setBounds(56, 100, 34, 17);
+		panelProdutos.add(labelQtdProdutos);
 		
-		JLabel lblArquivosIcone = new JLabel("");
-		lblArquivosIcone.setBounds(25, 0, 118, 98);
-		panelArquivos.add(lblArquivosIcone);
-		lblArquivosIcone.setIcon(new ImageIcon("icons\\produto.png"));
+		JLabel lblProdutosIcone = new JLabel("");
+		lblProdutosIcone.setBounds(25, 0, 118, 98);
+		panelProdutos.add(lblProdutosIcone);
+		lblProdutosIcone.setIcon(new ImageIcon("icons\\produto.png"));
 		
 		JLabel lblNewLabel = new JLabel("Welcome");
 		lblNewLabel.setBounds(35, 11, 663, 39);
@@ -77,25 +78,25 @@ public class PanelHomePage extends JPanel {
 		panelCategoria.add(lblCategoriaIcone);
 		lblCategoriaIcone.setIcon(new ImageIcon("icons\\categoria.png"));
 		
-		JPanel panelIndicadorUsuarios = new JPanel();
-		panelIndicadorUsuarios.setToolTipText("Quantidade de Usu\u00E1rios");
-		panelIndicadorUsuarios.setBackground(new Color(255, 255, 255));
-		panelIndicadorUsuarios.setBounds(549, 61, 149, 117);
-		panelIndicadorUsuarios.setBorder(new LineBorder(new Color(255, 165, 0)));
-		add(panelIndicadorUsuarios);
-		panelIndicadorUsuarios.setLayout(null);
+		JPanel panelIndicadorFuncionarios = new JPanel();
+		panelIndicadorFuncionarios.setToolTipText("Quantidade de Funcion\u00E1rios");
+		panelIndicadorFuncionarios.setBackground(new Color(255, 255, 255));
+		panelIndicadorFuncionarios.setBounds(549, 61, 149, 117);
+		panelIndicadorFuncionarios.setBorder(new LineBorder(new Color(255, 165, 0)));
+		add(panelIndicadorFuncionarios);
+		panelIndicadorFuncionarios.setLayout(null);
 		
-		JLabel labelQtdUsuarios = new JLabel("");
-		labelQtdUsuarios.setText(controllerUsuario.BuscarQtdUsuarios());
-		labelQtdUsuarios.setBounds(62, 89, 34, 28);
-		panelIndicadorUsuarios.add(labelQtdUsuarios);
-		labelQtdUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
-		labelQtdUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 16));
+		JLabel labelQtdFuncionarios = new JLabel("");
+		labelQtdFuncionarios.setText(controllerFuncionario.BuscarQtdFuncionarios());
+		labelQtdFuncionarios.setBounds(62, 89, 34, 28);
+		panelIndicadorFuncionarios.add(labelQtdFuncionarios);
+		labelQtdFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
+		labelQtdFuncionarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 16));
 		
-		JLabel lblUsuarioIcone = new JLabel("");
-		lblUsuarioIcone.setBounds(29, 11, 110, 84);
-		panelIndicadorUsuarios.add(lblUsuarioIcone);
-		lblUsuarioIcone.setIcon(new ImageIcon("icons\\users.png"));
+		JLabel lblFuncionarioIcone = new JLabel("");
+		lblFuncionarioIcone.setBounds(29, 11, 110, 84);
+		panelIndicadorFuncionarios.add(lblFuncionarioIcone);
+		lblFuncionarioIcone.setIcon(new ImageIcon("icons\\users.png"));
 		setVisible(true);
 	}
 }
