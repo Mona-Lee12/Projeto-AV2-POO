@@ -14,13 +14,13 @@ public class FuncionariosController {
 				dao.CadastrarFuncionarios(funcionario);
 			}
 			catch (Exception e) {
-				// TODO: handle exception
 				System.out.println("Erro no Controller");
 			}
 			finally {
-				System.out.println("Fim inserÁ„o");
+				System.out.println("Fim inser√ß√£o");
 			}
 		}
+		
 		public List<Funcionarios> BuscarFuncionarios(String nome) {
 			List<Funcionarios> funcionarios = new ArrayList<Funcionarios>();
 			try{
@@ -28,7 +28,7 @@ public class FuncionariosController {
 				funcionarios = dao.BuscarFuncionarios(nome);		
 			}
 			finally {
-				//System.out.println("Fim da leitura!");
+				System.out.println("Fim da leitura!");
 			}
 			
 			return funcionarios;
@@ -40,11 +40,10 @@ public class FuncionariosController {
 				dao.EditarFuncionarios(funcionario);
 			}
 			catch (Exception e) {
-				// TODO: handle exception
-				//System.out.println("Erro no Controller");
+				System.out.println("Erro no Controller");
 			}
 			finally {
-				//System.out.println("Fim atualizaÁ„o");
+				System.out.println("Fim atualiza√ß√£o");
 			}
 		}
 		
@@ -54,11 +53,26 @@ public class FuncionariosController {
 				dao.ExcluirFuncionarios(funcionario);
 			}
 			catch (Exception e) {
-				// TODO: handle exception
-			//	System.out.println("Erro no Controller");
+				System.out.println("Erro no Controller");
 			}
 			finally {
-				//System.out.println("Fim exclus„o");
+				System.out.println("Fim exclus√£o");
 			}
+		}
+		
+		public String BuscarQtdFuncionarios() {
+			String qtdFuncionarios = null;
+			
+			try {
+				FuncionariosDAO dao = new FuncionariosDAO();
+				qtdFuncionarios = dao.BuscarQtdFuncionarios();
+			}
+			catch(Exception e) {
+				System.out.println("Erro no Controller");
+			}
+			finally {
+			}
+			
+			return qtdFuncionarios;
 		}
 }
