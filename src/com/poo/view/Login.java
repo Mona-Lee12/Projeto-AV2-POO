@@ -88,7 +88,7 @@ public class Login extends JFrame {
 		setBounds(100, 100, 790, 452);
 		//setUndecorated(true); // Remove as bordas 
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(176, 224, 230));
+		contentPane.setBackground(new Color(153, 204, 204));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -111,27 +111,28 @@ public class Login extends JFrame {
 				if(dao.checkLogin(textLogin.getText(), new String(textSenha.getPassword()) )) {
 					new MenuLateral().setVisible(true);
 					dispose();
-					JOptionPane.showMessageDialog(null, "Usu·rio logado.");
+					JOptionPane.showMessageDialog(null, "Usu√°rio logado.");
 					
 				} else {
-					JOptionPane.showMessageDialog(null, "Usu·rio ou Senha incorretos.");
+					JOptionPane.showMessageDialog(null, "Usu√°rio ou Senha incorretos.");
 				}				
 			}						
 		});
 		btnEntrar.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		btnEntrar.setForeground(new Color(47, 79, 79));
-		btnEntrar.setBackground(new Color(224, 255, 255));
+		btnEntrar.setForeground(new Color(51, 102, 102));
+		btnEntrar.setBackground(new Color(255, 255, 255));
 		btnEntrar.setBounds(352, 266, 90, 28);
 		contentPane.add(btnEntrar);
 		
 		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setBackground(new Color(255, 255, 255));
 		lblLogin.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblLogin.setForeground(new Color(255, 255, 255));
 		lblLogin.setBounds(276, 119, 90, 26);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setForeground(Color.WHITE);
+		lblSenha.setForeground(new Color(255, 255, 255));
 		lblSenha.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblSenha.setBounds(276, 195, 90, 26);
 		contentPane.add(lblSenha);
@@ -140,6 +141,6 @@ public class Login extends JFrame {
 		panelImagemLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		panelImagemLogin.setBounds(277, 0, 234, 120);
 		contentPane.add(panelImagemLogin);
-		panelImagemLogin.setIcon(new ImageIcon("icons\\logo.png"));
+		panelImagemLogin.setIcon(new ImageIcon("icons\\carro.png"));
 	}
 }
