@@ -45,8 +45,8 @@ public class FuncionariosDAO {
 		ArrayList<Funcionarios> funcionarios = new ArrayList<Funcionarios>();
 		
 		try{
-			//Prepara a chamada para a procedure. Observe que h· "?"
-			// Que neste caso È o par‚metro de saÌda.
+			//Prepara a chamada para a procedure. Observe que h√° "?"
+			// Que neste caso √© o par√¢metro de sa√≠da.
 			procedure = con.prepareCall("{ CALL SP_BUSCAR_FUNCIONARIOS (?)}");
 			// parametro de entrada 
 			procedure.setString(1, nome);
@@ -88,8 +88,8 @@ public class FuncionariosDAO {
 			procedure = con.prepareCall("{ CALL SP_EDITAR_FUNCIONARIO(?,?,?,?,?,?,?)}");  
 			procedure.setInt(1, funcionario.getFuncionarioId()); 
 			procedure.setString(2, funcionario.getNome()); 
-			procedure.setString(3, funcionario.getCpf());
-			procedure.setString(4, funcionario.getTelefone());
+			procedure.setString(3, funcionario.getTelefone());
+			procedure.setString(4, funcionario.getCpf());
 			procedure.setString(5, funcionario.getEmail());
 			procedure.setString(6, funcionario.getCargo());
 			procedure.setFloat(7, funcionario.getSalario());
@@ -122,5 +122,30 @@ public class FuncionariosDAO {
 		finally {
 			ConnectionFactory.closeConnection(con, stmt);
 		}
+	}
+	
+	public String BuscarQtdFuncionarios() {
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String qtdFuncionarios = null;
+		
+		String sql = "SELECT COUNT(*) AS QTD FROM FUNCIONARIO";
+		try {
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				qtdFuncionarios = rs.getString("QTD");
+			}
+		}
+		catch(SQLException e) {
+			System.out.println(e);
+		}
+		finally {
+			ConnectionFactory.closeConnection(con, stmt);
+		}
+		
+		return qtdFuncionarios;
 	}
 }
