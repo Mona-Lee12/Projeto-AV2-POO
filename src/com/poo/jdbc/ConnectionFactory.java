@@ -8,9 +8,9 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
 		private static final String DRIVE = "com.mysql.jdbc.Driver"; 
-		private static final String URL = "jdbc:mysql://localhost:3306/poo_003?useTimezone=true&serverTimezone=UTC"; 
-		private static final String USER = "root"; 
-		private static final String SENHA = ""; 
+		private static final String URL = "jdbc:mysql://database-4.ckibuhsl7ji5.us-east-1.rds.amazonaws.com:3306/meu_banco_trab?useTimezone=true&serverTimezone=UTC";
+		private static final String USER = "admin"; 
+		private static final String SENHA = "admin123"; 
 		
 		
 		public static Connection getConnection() {

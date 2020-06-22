@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 import com.poo.controller.CategoriasController;
 import com.poo.controller.FuncionariosController;
+import com.poo.controller.ProdutoController;
 
 public class PanelHomePage extends JPanel {
 
@@ -23,7 +24,7 @@ public class PanelHomePage extends JPanel {
 		
 		FuncionariosController controllerFuncionario = new FuncionariosController();
 		CategoriasController controllerCategoria = new CategoriasController();
-		//ProdutosController controllerProduto = new ProdutosController();
+		ProdutoController controllerProduto = new ProdutoController();
 		
 		JPanel panelProdutos = new JPanel();
 		panelProdutos.setToolTipText("Quantidade de Produtos");
@@ -40,7 +41,7 @@ public class PanelHomePage extends JPanel {
 		
 		JLabel labelQtdProdutos = new JLabel("0");
 
-		//labelQtdProdutos.setText(controllerProduto.BuscarQtdProdutos());
+		labelQtdProdutos.setText(controllerProduto.BuscarQtdProdutos());
 		labelQtdProdutos.setHorizontalAlignment(SwingConstants.CENTER);
 		labelQtdProdutos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 16));
 		labelQtdProdutos.setBounds(56, 100, 34, 17);

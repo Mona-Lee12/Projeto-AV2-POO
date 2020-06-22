@@ -1,0 +1,57 @@
+CADASTRO DO USUARIO 
+
+ID
+
+NOME
+TELEFONE
+EMAIL
+CPF
+
+NOME DE USUARIO
+SENHA
+
+
+CREATE PROCEDURE `USP_BUSCAR_USUARIOS`(IN NOME_USUARIO varchar(100))
+BEGIN
+	SELECT 	nome  
+    FROM 	usuarios 
+    WHERE 	
+    (NOME_USUARIO IS NULL )
+	OR 
+     ( NOME_USUARIO IS NOT NULL AND nome like NOME_USUARIO);
+END
+
+
+------------------------------------------------------------------------------------
+
+TELA DE CADASTRO DE ARQUIVOS
+
+DADOS ESSENCIAIS PARA ARMAZENAR OS ARQUIVOS:
+
+COD
+ASSUNTO	
+CATEGORIA (optiongroup)
+NOME_ARQUIVO
+IDIOMA
+TIPO (pdf, pub)
+
+FUNCIONAMENTO DA TELA DE CADASTRO DE ARQUIVOS
+
+- Usuario Seleciona a opção de cadastrar arquivo 
+- sistema retorna com a tela de cadastrar arquivo
+- usuario digita as informações do arquivo ( nome do arquivo, assunto(opcional), idioma e categoria
+- usuario seleciona a opção de carregar aquivo a partir de um diretorio
+- usuario seleciona a opção de salvar arquivo(nuvem db)
+- sistema exibe uma mensagem de sucesso /ou erro para o usuario
+- fim funcionamento 
+
+* Quaisquer arquivos cadastrados no banco podem ser resgatados na aba CATEGORIAS
+
+
+
+
+
+
+
+
+

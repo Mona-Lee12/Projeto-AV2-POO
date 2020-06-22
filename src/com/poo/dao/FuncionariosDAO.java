@@ -99,10 +99,12 @@ public class FuncionariosDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		finally {
 			ConnectionFactory.closeConnection(con, procedure);
 		}
 	}
+	
 	public void ExcluirFuncionarios(Funcionarios funcionario) {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;

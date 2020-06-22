@@ -22,7 +22,7 @@ public class AdminDAO {
 		
 		try {
 			
-			stmt = con.prepareStatement("SELECT * FROM admin WHERE login = ? AND senha = ? ");
+			stmt = con.prepareStatement("SELECT login, senha FROM ADMIN WHERE login = ? AND senha = ?");
 			stmt.setString(1,  login);
 			stmt.setString(2,  senha);
 			rs = stmt.executeQuery();
@@ -32,7 +32,8 @@ public class AdminDAO {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("Error: O Banco de dados nao correspondeu!");			
+			
+			System.out.println("Error: O Banco de dados nao correspondeu!" +e);			
 			
 		}
 		finally {
