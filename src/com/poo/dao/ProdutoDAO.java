@@ -34,7 +34,7 @@ public class ProdutoDAO {
 
             JOptionPane.showMessageDialog(null, "Produto Cadastrado !");
     	 } catch (SQLException ex) {
-             System.out.println("Error: "+ex.getMessage() + ex.getErrorCode());
+             System.out.println("DAO_Error: "+ex.getMessage() + ex.getErrorCode());
              JOptionPane.showMessageDialog(null, "Produto nao Cadastrado !");
              
          } finally {
@@ -99,8 +99,8 @@ public class ProdutoDAO {
              JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
          } catch (SQLException ex) {
         	 
+        	 JOptionPane.showMessageDialog(null, "Erro ao atualizar: ");
         	 System.out.println("DAO_Error: "+ex.getMessage() + ex.getErrorCode());
-             JOptionPane.showMessageDialog(null, "Erro ao atualizar: ");
              
          } finally {
              ConnectionFactory.closeConnection(con, stmt);
@@ -117,10 +117,10 @@ public class ProdutoDAO {
              stmt.executeUpdate();
              JOptionPane.showMessageDialog(null, "Produto excluido");
              
-         } catch (SQLException ex) {	
-        	 ex.printStackTrace();
-        	 System.out.println("DAO_Error: " +ex.getMessage() + ex.getErrorCode());
+         } catch (SQLException ex) {
+        	 
         	 JOptionPane.showMessageDialog(null, "Erro ao excluir");
+        	 System.out.println("DAO_Error: " +ex.getMessage() + ex.getErrorCode());
         	 
          } finally {
              ConnectionFactory.closeConnection(con, stmt);
@@ -141,7 +141,7 @@ public class ProdutoDAO {
  			}
  		}
  		catch(SQLException e) {
- 			System.out.println(e);
+ 			e.printStackTrace();
  		}
  		finally {
  			ConnectionFactory.closeConnection(con, stmt);
