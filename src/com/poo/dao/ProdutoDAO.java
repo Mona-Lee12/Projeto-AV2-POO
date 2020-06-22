@@ -47,8 +47,8 @@ public class ProdutoDAO {
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		
 		try{
-			//Prepara a chamada para a procedure. Observe que h· "?"
-			// Que neste caso È o par‚metro de saÌda.
+			//Prepara a chamada para a procedure. Observe que h√° "?"
+			// Que neste caso √© o par√¢metro de sa√≠da.
 			procedure = con.prepareCall("{ CALL SP_BUSCAR_PRODUTOS (?)}");
 			// parametro de entrada 
 			procedure.setString(1, null);
@@ -130,7 +130,7 @@ public class ProdutoDAO {
      public String BuscarQtdProdutos() { 		
  		String qtdProdutos = null;
  		
- 		String sql = "SELECT COUNT(*) AS QTD FROM FUNCIONARIO";
+ 		String sql = "SELECT COUNT(*) AS QTD FROM PRODUTO";
  		
  		try {
  			stmt = con.prepareStatement(sql);
