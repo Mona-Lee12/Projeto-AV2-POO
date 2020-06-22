@@ -82,19 +82,18 @@ public class ProdutoDAO {
 		return produtos;
 	}
      
-     public void AtualizarProduto(Produto p) {       
+     public void AtualizarProduto(Produto p) {   
 
          try {
-        	 Produto produto = new Produto();
-        	 procedure = con.prepareCall("{CALL SP_EDITAR_PRODUTO(?, ?, ?, ?, ?, ?)}"); 
-             procedure.setInt(1, produto.getId() );
-             procedure.setString(2,  produto.getDescricao());
-             procedure.setInt(3, produto.getQtd());
-             procedure.setDouble(4, produto.getPreco());
-             procedure.setString(5, produto.getCategoria());
-             procedure.setString(6, produto.getLote());
-             
-             procedure.executeUpdate();
+        	 stmt = con.prepareStatement(" UPDATE PRODUTO SET descricao = ? ,qtd = ? ,preco = ? ,categoria = ?, lote = ?  WHERE id = ?;");
+        	 stmt.setString(1,  p.getDescricao());
+        	 stmt.setInt(2, p.getQtd());
+        	 stmt.setDouble(3, p.getPreco());
+        	 stmt.setString(4, p.getCategoria());
+        	 stmt.setString(5, p.getLote());
+        	 stmt.setInt(6, p.getId() );
+
+             stmt.executeUpdate();
 
              JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
          } catch (SQLException ex) {
@@ -103,7 +102,7 @@ public class ProdutoDAO {
         	 System.out.println("DAO_Error: "+ex.getMessage() + ex.getErrorCode());
              
          } finally {
-             ConnectionFactory.closeConnection(con, stmt);
+             ConnectionFactory.closeConnection(con, procedure);
          }
 
      }
